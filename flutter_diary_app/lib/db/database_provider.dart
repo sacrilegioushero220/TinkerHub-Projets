@@ -5,6 +5,7 @@ import 'package:sqflite/sqflite.dart';
 ///db provider class
 class DatabaseProvider {
   DatabaseProvider._();
+  static final DatabaseProvider db=DatabaseProvider._();
   static Database _database;
 
   //creating the getter the database
@@ -13,13 +14,16 @@ class DatabaseProvider {
     if (_database != null) {
       return _database;
     }
+    _database = await initDB();
+    return _database;
   }
+
 initDB() async{
-  return await openDatabase(join(await getDatabasesPath(, "note_app.db"),
+  return await openDatabase(join(await getDatabasesPath(), "note_app.db"),
   onCreate: (db, version) async{
     //creating first table
     await db.execute('''
-CREATE TABLE notes (
+ CREATE TABLE Diary_entries (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT,
   body TEXT,
@@ -33,7 +37,7 @@ CREATE TABLE notes (
 //function that will add a new note to our variable
 addNewNote(NoteModel note)async{
   final db = await database;
-  db.insert("notes", note.toMap(),
+  db.insert("Diary_entries", note.toMap(),
   conflictAlgorithm: ConflictAlgorithm.replace
   );
 //
