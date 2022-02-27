@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         //The future builder to display the element
         appBar: AppBar(
       title: Text("Your Diary Entries"),
-    )
+    ),
     body: FutureBuilder(
       future: getNotes(),
       builder: (context, noteData){
@@ -56,9 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
           {
             //Checking we didnts get a null
             if(noteData.data == Null){
-              return Center(child: Text("You don't have any notes yet, create one"),
+              return Center(
+                child: Text("You don't have any notes yet, create one"),
               );
-            }else{
+            } else{
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
@@ -66,9 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index){
                     //setting the different items
                     String title =noteData.data[index]['title'];
-                    String body =noteData.data[index]['body'];
-                    String creation_date =noteData.data[index]['creation_date'];
-                    int id =noteData.data[index]['id'];
+                    String body=noteData.data[index]['body'];
+              
+                    String creationDate =noteData.data[index]['creation_date'];
+        
+                  int id =noteData.data[index]['id'];
                     return Card(child: ListTile(
                          title: Text(title),
                          subtitle: Text(body),
