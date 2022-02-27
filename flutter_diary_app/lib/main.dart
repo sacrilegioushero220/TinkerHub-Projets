@@ -31,7 +31,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //getting all entries
+  //getting all notes
   getNotes() async {
     final notes = await DatabaseProvider.db.getNotes();
     return notes;
