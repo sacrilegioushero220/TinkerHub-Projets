@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         String title = noteData.data[index]['title'];
                         String body = noteData.data[index]['body'];
                         String creation_date =
-                            noteData.data![index]['creation_date'];
-                        int id = noteData.data![index]['id'];
+                            noteData.data[index]['creation_date'];
+                        int id = noteData.data[index]['id'];
                         return Card(
                           child: ListTile(
                             title: Text(title),

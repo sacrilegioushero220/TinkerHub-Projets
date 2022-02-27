@@ -4,9 +4,10 @@ class NoteModel {
   String body;
   DateTime creationDate;
   NoteModel(
-      {this.id = 0,
-      this.title = "None",
-      this.body = "None",
+      {
+        required this.id ,
+      required this.title ,
+      required this.body ,
       required this.creationDate});
 
   //function to convert our item into a map
