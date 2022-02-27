@@ -39,17 +39,17 @@ class DatabaseProvider {
     db.insert("Diary_entries", note.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
+
 //function that fetches from our database and returns all the
 //elements inside the diary entries table
-    Future<dynamic> getNotes() async {
-      final db = await database;
-      var res = await db.query("Diary_entries");
-      if (res.length == 0) {
-        return Null;
-      } else {
-        var resultMap = res.toList();
-        return resultMap.isNotEmpty ? resultMap : Null;
-      }
+  Future<dynamic> getNotes() async {
+    final db = await database;
+    var res = await db.query("Diary_entries");
+    if (res.length == 0) {
+      return Null;
+    } else {
+      var resultMap = res.toList();
+      return resultMap.isNotEmpty ? resultMap : Null;
     }
   }
-
+}
