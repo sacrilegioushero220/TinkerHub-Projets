@@ -2,8 +2,12 @@ class NoteModel {
   int id;
   String title;
   String body;
-  DateTime creation_date;
-  NoteModel({this.id, this.title, this.body, this.creation_date});
+  DateTime creationDate;
+  NoteModel(
+      {this.id = 0,
+      this.title = "None",
+      this.body = "None",
+      required this.creationDate});
 
   //function to convert our item into a map
   Map<String, dynamic> toMap() {
@@ -11,7 +15,7 @@ class NoteModel {
       "id": id,
       "title": title,
       "body": body,
-      "creation_date": creation_date
+      "creation_date": creationDate
     });
   }
 }
