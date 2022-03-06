@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_diary_app/db/database_provider.dart';
+import 'package:flutter_diary_app/model/note_model.dart';
 
 class AddNote extends StatefulWidget {
   AddNote({Key key}) : super(key: key);
@@ -8,6 +10,18 @@ class AddNote extends StatefulWidget {
 }
 
 class _AddNoteState extends State<AddNote> {
+  // creating addNote Function
+  String title;
+  String body;
+  DateTime date;
+  //the input controller
+  TextEditingController titleController = TextEditingController();
+  TextEditingController bodyController = TextEditingController();
+  AddNote(NoteModel note) {
+    DatabaseProvider.db.addNewNote(note);
+    print("Saved succesfully");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +41,7 @@ class _AddNoteState extends State<AddNote> {
             ),
             Expanded(
               child: TextField(
+                controller: bodyController,
                 keyboardType: TextInputType.multiline,
                 maxLines: null,
                 decoration: InputDecoration(
@@ -39,7 +54,20 @@ class _AddNoteState extends State<AddNote> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {}, label: Text("Save"), icon: Icon(Icons.save)),
+          onPressed: () {
+            setState(() {
+              title = titleController.text;
+              body = bodyController.text;
+              date = DateTime.now();
+            });
+            NoteModel note =
+                NoteModel(title: title, body: body, creationDate: date);
+            AddNote(note);
+            // when the note is saved it will return automatically to homepage
+            Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+          },
+          label: Text("Save"),
+          icon: Icon(Icons.save)),
     );
   }
 }

@@ -9,22 +9,11 @@ class NoteModel {
 
   //function to convert our item into a map
   Map<String, dynamic> toMap() {
-    Map<String, dynamic> data = Map<String, dynamic>();
-
-    data['id'] = id;
-    data['title'] = title;
-    data['body'] = body;
-    data['creationDate'] = creationDate;
-    return data;
-  }
-
-  @override
-  toString() {
-    return {
+    return ({
       "id": id,
       "title": title,
       "body": body,
-      "creation_date": creationDate
-    }.toString();
+      "creation_date": creationDate.toString()
+    });
   }
 }
