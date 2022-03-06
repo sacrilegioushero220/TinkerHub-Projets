@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diary_app/db/database_provider.dart';
 import 'package:path/path.dart';
+import 'model/note_model.dart';
 
 void main() {
+  Text('1');
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
-  @override
+ @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -40,51 +39,80 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //The future builder to display the element
-        appBar: AppBar(
-      title: Text("Your Diary Entries"),
-    ),
-    body: FutureBuilder(
-      future: getNotes(),
-      builder: (context, noteData){
-        switch(noteData.connectionState){
-          case ConnectionState.waiting:
-          {
-            return Center(child: CircularProgressIndicator());
+      //The future builder to display the element
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Your Diary Entries'),
+      ),
+      body: FutureBuilder(
+        future: getNotes(),
+        builder: (context, noteData) {
+          switch (noteData.connectionState) {
+            case ConnectionState.waiting:
+              {
+                return Center(child: CircularProgressIndicator());
+              }
+            case ConnectionState.done:
+              {
+                //Checking we didnts get a null
+                if (noteData.data == Null) {
+                  return Center(
+                    child: Text("You don't have any notes yet, create one"),
+                  );
+                } else {
+                  //final data = noteData.data;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: noteData.data.length,
+                      itemBuilder: (context, index) {
+                        //setting the different items
+                        String title = noteData.data[index]['title'];
+                        String body = noteData.data[index]['body'];
+
+                        String creationDate =
+                            noteData.data[index]['creation_date'];
+
+                        int id = noteData.data[index]['id'];
+                        return Card(
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(context, "/DisplayNote",
+                                  arguments: NoteModel(
+                                    id: id,
+                                    title: title,
+                                    body: body,
+                                    creationDate: DateTime.parse(creationDate),
+                                  ));
+                            },
+                            title: Text(title),
+                            subtitle: Text(body),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+                break;
+              }
+            case ConnectionState.none:
+              // TODO: Handle this case.
+              break;
+            case ConnectionState.active:
+              // TODO: Handle this case.
+              break;
           }
-          case ConnectionState.done:
-          {
-            //Checking we didnts get a null
-            if(noteData.data == Null){
-              return Center(
-                child: Text("You don't have any notes yet, create one"),
-              );
-            } else{
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: noteData.data.length,
-                  itemBuilder: (context, index){
-                    //setting the different items
-                    String title =noteData.data[index]['title'];
-                    String body=noteData.data[index]['body'];
-              
-                    String creationDate =noteData.data[index]['creation_date'];
-        
-                  int id =noteData.data[index]['id'];
-                    return Card(child: ListTile(
-                         title: Text(title),
-                         subtitle: Text(body),
-                    ),);
-                  },
-                ),
-                );
-            }
-    
-          }
-        }
-      }
-    ),
+          return Center(
+            child: Text("You don't have any notes yet, create one!"),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/AddNote");
+        },
+        child: Icon(Icons.note_add),
+      ),
     );
   }
 }
