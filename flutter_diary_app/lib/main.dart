@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diary_app/db/database_provider.dart';
+import 'package:flutter_diary_app/screens/add_note.dart';
 import 'package:path/path.dart';
 import 'model/note_model.dart';
+import 'screens/add_note.dart';
 
 void main() {
   Text('1');
@@ -9,13 +11,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //We will use routes to navigate between screens
       initialRoute: "/",
-      routes: {"/": (context) => HomeScreen()},
+      routes: {
+        "/": (context) => HomeScreen(),
+        "/AddNote": ((context) => AddNote())
+      },
       title: 'A Diary Entry App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeScreen extends StatefulWidget {
- @override
+  @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 

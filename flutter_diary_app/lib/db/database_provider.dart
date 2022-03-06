@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseProvider {
   final databaseName = "notes.db";
   final tableName = "notes";
-  
+
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
   static Database _database;
@@ -22,8 +22,8 @@ class DatabaseProvider {
   }
 
   initDB() async {
-    return await openDatabase(join(await getDatabasesPath(), 'notes.db'),version: 1,
-        onCreate: (db, version) async {
+    return await openDatabase(join(await getDatabasesPath(), 'notes.db'),
+        version: 1, onCreate: (db, version) async {
       //creating first table
       await db.execute('''
  CREATE TABLE notes (
@@ -55,8 +55,8 @@ class DatabaseProvider {
       return resultMap.isNotEmpty ? resultMap : Null;
     }
   }
-  Future<int> deleteNote(int id) async {
 
+  Future<int> deleteNote(int id) async {
     final db = await database;
     int count = await db.rawDelete("DELETE FROM notes WHERE id=?", [id]);
 
