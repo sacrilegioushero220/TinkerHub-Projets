@@ -38,6 +38,8 @@ class _AddNoteState extends State<AddNote> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {}, label: Text("Save"), icon: Icon(Icons.save)),
     );
   }
 }
