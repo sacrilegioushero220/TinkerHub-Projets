@@ -3,21 +3,22 @@ import 'package:flutter_diary_app/db/database_provider.dart';
 import 'package:flutter_diary_app/model/note_model.dart';
 
 class AddNote extends StatefulWidget {
-  AddNote({Key key}) : super(key: key);
+  
 
   @override
   _AddNoteState createState() => _AddNoteState();
+  AddNote({Key key}) : super(key: key);
 }
 
 class _AddNoteState extends State<AddNote> {
   // creating addNote Function
-  String title;
-  String body;
+  String title="";
+  String body="";
   DateTime date;
   //the input controller
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
-  AddNote(NoteModel note) {
+  addNote(NoteModel note) {
     DatabaseProvider.db.addNewNote(note);
     print("Saved succesfully");
   }
@@ -33,6 +34,7 @@ class _AddNoteState extends State<AddNote> {
         child: Column(
           children: [
             TextField(
+              controller: titleController,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Title",
@@ -62,7 +64,7 @@ class _AddNoteState extends State<AddNote> {
             });
             NoteModel note =
                 NoteModel(title: title, body: body, creationDate: date);
-            AddNote(note);
+            addNote(note);
             // when the note is saved it will return automatically to homepage
             Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
           },

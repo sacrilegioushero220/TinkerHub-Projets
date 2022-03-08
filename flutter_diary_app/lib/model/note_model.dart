@@ -13,7 +13,7 @@ class NoteModel {
       "id": id,
       "title": title,
       "body": body,
-      "creation_date": creationDate.toString()
+      "creationDate": creationDate.toString()
     });
   }
 }

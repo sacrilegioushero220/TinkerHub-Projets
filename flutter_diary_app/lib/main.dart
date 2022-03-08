@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_diary_app/db/database_provider.dart';
 import 'package:flutter_diary_app/screens/add_note.dart';
+import 'package:flutter_diary_app/screens/display_note.dart';
 import 'package:path/path.dart';
 import 'model/note_model.dart';
 import 'screens/add_note.dart';
@@ -15,10 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //We will use routes to navigate between screens
+      debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
         "/": (context) => HomeScreen(),
-        "/AddNote": ((context) => AddNote())
+        "/AddNote": (context) => AddNote(),
+        "/DisplayNote": (context) => DisplayNote(),
       },
       title: 'A Diary Entry App',
       theme: ThemeData(
@@ -61,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //Checking we didnts get a null
                 if (noteData.data == Null) {
                   return Center(
-                    child: Text("You don't have any notes yet, create one"),
+                    child: Text("You don't have any entries yet, create one"),
                   );
                 } else {
                   //final data = noteData.data;
@@ -75,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         String body = noteData.data[index]['body'];
 
                         String creationDate =
-                            noteData.data[index]['creation_date'];
+                            noteData.data[index]['creationDate'];
 
                         int id = noteData.data[index]['id'];
                         return Card(
