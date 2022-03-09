@@ -45,7 +45,28 @@ class DatabaseProvider {
 
 //function that fetches from our database and returns all the
 //elements inside the diary entries table
+
   Future<dynamic> getNotes() async {
+    print("In get notes");
+    final db = await database;
+
+    var res = await db.query("notes");
+    print("Res value");
+    print(res);
+    print("Res value length");
+    print(res.length);
+    print("Res value list");
+    print(res.toList());
+    if (res.length == 0) {
+      return Null;
+    } else {
+      var resultMap = res.toList();
+      print("Resultmap value");
+      print(resultMap);
+      return resultMap.isNotEmpty ? resultMap : Null;
+    }
+  }
+  /*Future<dynamic> getNotes() async {
     final db = await database;
     var res = await db.query("notes");
     if (res.isEmpty) {
@@ -54,7 +75,7 @@ class DatabaseProvider {
       var resultMap = res.toList();
       return resultMap.isNotEmpty ? resultMap : Null;
     }
-  }
+  }*/
 
   Future<int> deleteNote(int id) async {
     final db = await database;
