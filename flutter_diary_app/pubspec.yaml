@@ -29,6 +29,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  provider: ^6.0.2 #no indention
+  
+  http: ^0.13.4 #no indention
+  
+  shared_preferences: ^2.0.13 #no indention
+  
+  flushbar: ^1.10.4 #no indention
 
 
   # The following adds the Cupertino Icons font to your application.
