@@ -10,7 +10,7 @@ The user is able to add new dairy entries each day and can view their past entri
 Flutter / 35
 
 ## Link to product walkthrough
-[link to video]
+[https://drive.google.com/file/d/11eTAjjtenlRFOhk0o4ZgR5wUIEhXPqYt/view?usp=sharing]
 
 ## APK Link 
 [https://drive.google.com/drive/folders/1dVisa7bOx-QvN9jvELEMm9faN_uWaIrt?usp=sharing]
@@ -33,3 +33,4 @@ Library Name - Version
 ## How to Run
 Instructions for running
 1. Ensure your on the main project directory
+2. Run the command "Flutter run
