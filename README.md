@@ -12,9 +12,9 @@ Flutter / 35
 ## Link to product walkthrough
 [link to video]
 
-## How it Works ?
-1. Step 1
-2. Step 2
+## APK Link 
+[https://drive.google.com/drive/folders/1dVisa7bOx-QvN9jvELEMm9faN_uWaIrt?usp=sharing]
+
 
 ## Libraries used
 Library Name - Version
