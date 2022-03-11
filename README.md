@@ -19,9 +19,19 @@ Flutter / 35
 ## Libraries used
 Library Name - Version
 
-## How to configure
-Instructions for setting up project
+  intl: ^0.17.0
+  
+  provider: ^6.0.2 
+  
+  http: ^0.13.4 
+  
+  shared_preferences: ^2.0.13
+  
+  flushbar: ^1.10.4 
+
 
 ## How to Run
 Instructions for running
+1. Ensure your on the main project directory
+2. Run the command "Flutter run"
     
