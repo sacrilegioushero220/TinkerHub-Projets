@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
 
             Provider.of<UserProvider>(context, listen: false).setUser(user);
 
-            Navigator.pushReplacementNamed(context, '/dashboard');
+            Navigator.pushReplacementNamed(context, '/HomeScreen');
 
           } else {
             Flushbar(
