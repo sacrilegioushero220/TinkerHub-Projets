@@ -5,6 +5,7 @@ import 'package:flutter_diary_app/screens/display_note.dart';
 import 'package:path/path.dart';
 import 'model/note_model.dart';
 import 'screens/add_note.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   Text('1');
@@ -92,8 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     creationDate: DateTime.parse(creationDate),
                                   ));
                             },
-                            title: Text(title),
-                            subtitle: Text(body),
+                            title: Text(DateFormat('EEE, dd-MM-yyyy')
+                                .format(DateTime.parse(creationDate))),
+                            subtitle: Text(title + '\n' + body),
                           ),
                         );
                       },
