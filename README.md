@@ -1,5 +1,4 @@
-# Project Name
-- A Diary App 
+# Project Name: A Diary App 
 In this project we have created a diary app using flutter.
 The user is able to add new dairy entries each day and can view their past entries as well.
 
