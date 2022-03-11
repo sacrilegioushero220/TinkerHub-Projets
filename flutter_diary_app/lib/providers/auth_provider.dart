@@ -40,7 +40,7 @@ class AuthProvider extends ChangeNotifier {
     };
 
     return await post(
-      AppUrl.register,
+       Uri.parse(AppUrl.register),
       body: json.encode(apiBodyData),
       headers: {'Content-Type':'application/json'}
     ).then(onValue)
@@ -96,9 +96,9 @@ class AuthProvider extends ChangeNotifier {
 
     _loggedInStatus = Status.Authenticating;
     notifyListeners();
-
+  
     Response response = await post(
-      AppUrl.login,
+      Uri.parse(AppUrl.login),
       body: json.encode(loginData),
       headers: {
         'Content-Type': 'application/json',
